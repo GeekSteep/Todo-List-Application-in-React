@@ -1,0 +1,36 @@
+npx create-react-app todo-list
+cd todo-list
+npm start
+
+
+
+import React, { useState } from 'react';
+import './App.css';
+
+function App() {
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState('');
+
+  const addTodo = (e) => {
+    e.preventDefault();
+    setTodos([...todos, input]);
+    setInput('');
+  };
+
+  return (
+    <div className="App">
+      <h1>Todo List</h1>
+      <form>
+        <input value={input} onChange={(e) => setInput(e.target.value)} />
+        <button type="submit" onClick={addTodo}>Add Todo</button>
+      </form>
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>{todo}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
